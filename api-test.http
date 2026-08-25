@@ -48,3 +48,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEiLCJpYXQiOjE3ODczM
   "pricePerKw": 9.5,
   "isBusy": false
 }
+###
+POST http://localhost:8080/battery/all
+Content-Type: application/json
+
+{
+  "batteryId":"B01",
+  "soc":88,
+  "temp":32.1,
+  "status":"GOOD",
+  "isCharging":true
+}
