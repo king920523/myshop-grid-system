@@ -70,3 +70,104 @@ Content-Type: application/json
   "isOk": true,
   "chargerStationIds": ["ST-999", "ST-888"]
 }
+### 新增 2 號發電廠：台中火力發電廠 (火力發電)
+POST http://localhost:8080/powerplant/add
+Content-Type: application/json
+
+{
+  "plantName": "台中火力發電廠",
+  "plantType": "火力",
+  "output": 800.0,
+  "capacity": 1200.0,
+  "isOk": true
+}
+### 1號站：大潭電廠附屬快充站 (綁定1號發電廠)
+POST http://localhost:8080/charger/add/at/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4NzY0MjQ3MywiZXhwIjoxNzg3NjQ5NjczfQ.S6IvvCDDtM9C3DszXhkJV0vMZex-LdnSaNz74KVc29w
+
+{
+  "stationId": "ST-001",
+  "type": "CCS1-超高速快充",
+  "kw": 360,
+  "pricePerKw": 11.5,
+  "isBusy": false
+}
+
+###
+
+### 2號站：林口電廠電動巴士專用站 (綁定1號發電廠)
+POST http://localhost:8080/charger/add/at/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4NzY0MjQ3MywiZXhwIjoxNzg3NjQ5NjczfQ.S6IvvCDDtM9C3DszXhkJV0vMZex-LdnSaNz74KVc29w
+
+{
+  "stationId": "ST-002",
+  "type": "CCS2-大巴專用槍",
+  "kw": 180,
+  "pricePerKw": 9.0,
+  "isBusy": true
+}
+
+###
+
+### 3號站：竹科園區超頻充電樁 (綁定1號發電廠)
+POST http://localhost:8080/charger/add/at/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4NzY0MjQ3MywiZXhwIjoxNzg3NjQ5NjczfQ.S6IvvCDDtM9C3DszXhkJV0vMZex-LdnSaNz74KVc29w
+
+{
+  "stationId": "ST-003",
+  "type": "TPC-美規目的地樁",
+  "kw": 50,
+  "pricePerKw": 7.5,
+  "isBusy": false
+}
+
+###
+
+### 4號站：台中火力二號供電樁 (綁定2號發電廠)
+POST http://localhost:8080/charger/add/at/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4NzY0MjQ3MywiZXhwIjoxNzg3NjQ5NjczfQ.S6IvvCDDtM9C3DszXhkJV0vMZex-LdnSaNz74KVc29w
+
+{
+  "stationId": "ST-004",
+  "type": "CCS1-標準快充",
+  "kw": 120,
+  "pricePerKw": 10.0,
+  "isBusy": false
+}
+
+###
+
+### 5號站：興達電廠南區備用樁 (綁定2號發電廠)
+POST http://localhost:8080/charger/add/at/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4NzY0MjQ3MywiZXhwIjoxNzg3NjQ5NjczfQ.S6IvvCDDtM9C3DszXhkJV0vMZex-LdnSaNz74KVc29w
+
+{
+  "stationId": "ST-005",
+  "type": "CCS2-通用樁",
+  "kw": 60,
+  "pricePerKw": 8.0,
+  "isBusy": true
+}
+
+###
+
+### 6號站：龍門核四緊急調度樁 (綁定2號發電廠)
+POST http://localhost:8080/charger/add/at/2
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4NzY0MjQ3MywiZXhwIjoxNzg3NjQ5NjczfQ.S6IvvCDDtM9C3DszXhkJV0vMZex-LdnSaNz74KVc29w
+
+{
+  "stationId": "ST-006",
+  "type": "CHAdeMO-日規槍頭",
+  "kw": 100,
+  "pricePerKw": 8.5,
+  "isBusy": false
+}
+###
+GET http://localhost:8080/charger/page
+Content-Type: application/json

@@ -2,7 +2,11 @@ package com.example.myshop.service;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.myshop.Battery;
@@ -189,5 +193,13 @@ public class GridService {
         String token = jwtService.generateToken(username);
         return "✅ 登入成功！請收下您的安全憑證 Token:\nBearer " + token;
     }
+
+    public Page<Charger> getChargersByPage(int page, int size){
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("id").descending());
+
+        return chargerRepository.findAll(pageable);
+    }
+    
 
 }
