@@ -1,0 +1,50 @@
+###
+POST http://localhost:8080/powerplant/add
+Content-Type: application/json
+
+{
+  "plantName": "龍門核四廠",
+  "plantType": "核能",
+  "output": 500.0,
+  "capacity": 1000.0,
+  "isOk": true
+}
+###
+POST http://localhost:8080/charger/add/at/1
+Content-Type: application/json
+
+{
+  "stationId": "ST-999",
+  "type": "超高頻快充",
+  "kw": 250,
+  "pricePerKw": 9.5,
+  "isBusy": false
+}
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "admin1",
+  "password": "12345"
+}
+###
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "username": "admin1",
+  "password": "12345"
+}
+###
+POST http://localhost:8080/charger/add/at/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEiLCJpYXQiOjE3ODczMTAyNjQsImV4cCI6MTc4NzMxNzQ2NH0.-rq8JmgCttKC8haUeK4oj57vIdeksTv8cQYsJqMDSn4
+
+{
+  "stationId": "ST-999",
+  "type": "超高頻快充",
+  "kw": 250,
+  "pricePerKw": 9.5,
+  "isBusy": false
+}
