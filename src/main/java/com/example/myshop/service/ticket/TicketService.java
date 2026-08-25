@@ -19,26 +19,33 @@ public class TicketService {
 
 
     @Transactional
-    public String rushBuyTicket(Long ticketId){
+    public String rushBuyTicket(Long ticketId, String username){
         
-        String redisKey = "ticket_stock:" + ticketId;
+        String stockKey = "ticket_stock:" + ticketId;
+        String userSetKey = "ticket_user_set" + ticketId;
 
-        Long remainingStock = redisTemplate.opsForValue().decrement(redisKey);
+        Boolean isAlreadyBought = redisTemplate.opsForSet().isMember(userSetKey, username);
+
+        if (Boolean.TRUE.equals(isAlreadyBought)) {
+            return "❌ 搶票失敗：[黃牛攔截] 系統偵測到帳號 " + username + " 已經成功購買過門票，本場次每人限購一張！";
+        }
+
+
+        Long remainingStock = redisTemplate.opsForValue().decrement(stockKey);
         
         if (remainingStock < 0) {
 
-            redisTemplate.opsForValue().increment(redisKey);
+            redisTemplate.opsForValue().increment(stockKey);
             return "❌ 搶票失敗：[Redis 攔截] 周杰倫門票在記憶體中已全數售罄！";
         }
+
+        redisTemplate.opsForSet().add(userSetKey, username);
         
         TicketStock ticket = ticketStockRepository.findWithLockById(ticketId).orElse(null);
         if (ticket == null) {
             return "找不到該場次的演唱會";
         }
 
-        if (ticket.getStock() <= 0) {
-            return "票已全數售鑿";
-        }
 
         ticket.setStock(ticket.getStock() - 1);
         ticketStockRepository.save(ticket);
