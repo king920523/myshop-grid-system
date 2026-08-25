@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.example.myshop.entity.grid.Battery;
 import com.example.myshop.repository.grid.BatteryRepository;
 
-@Component
+// @Component
 public class GridSimulationScheduler {
     
     @Autowired
