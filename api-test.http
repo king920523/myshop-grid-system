@@ -49,7 +49,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbjEiLCJpYXQiOjE3ODczM
   "isBusy": false
 }
 ###
-POST http://localhost:8080/battery/all
+POST http://localhost:8080/battery/add
 Content-Type: application/json
 
 {
@@ -58,4 +58,15 @@ Content-Type: application/json
   "temp":32.1,
   "status":"GOOD",
   "isCharging":true
+}
+###
+GET http://localhost:8080/powerplant/find-with-chargers/1
+Content-Type: application/json
+
+{
+   "id": 1,
+  "plantName": "龍門核四廠",
+  "plantType": "核能",
+  "isOk": true,
+  "chargerStationIds": ["ST-999", "ST-888"]
 }

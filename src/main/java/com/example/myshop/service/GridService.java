@@ -11,6 +11,7 @@ import com.example.myshop.Charger;
 import com.example.myshop.GridAdmin;
 import com.example.myshop.GridUser;
 import com.example.myshop.PowerPlant;
+import com.example.myshop.PowerPlantDTO;
 import com.example.myshop.repository.BatteryRepository;
 import com.example.myshop.repository.CarbonAccRepository;
 import com.example.myshop.repository.ChargerRepository;
@@ -161,6 +162,29 @@ public class GridService {
 
         return "管理員帳號註冊成功";
     }
+
+    public PowerPlantDTO getPowerPlantWithChargers(Long plantId){
+
+        PowerPlant plant =powerplantRepository.findById(plantId).orElse(null);
+        if (plant == null) { return null; }  
+        
+        PowerPlantDTO dto = new PowerPlantDTO();
+        dto.setId(plant.getId());
+        dto.setPlantName(plant.getPlantName());
+        dto.setPlantType(plant.getPlantType());
+        dto.setIsOk(plant.getIsOk());
+
+        List<String> ids = new java.util.ArrayList<>();
+        if (plant.getChargers() != null) {
+            for (Charger c : plant.getChargers()) {
+                ids.add(c.getStationId()); // 提取充電站代號
+            }
+        }
+        dto.setChargerStationIds(ids);
+
+        return dto;
+    }
+
 
 
 }

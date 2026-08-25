@@ -17,6 +17,7 @@ import com.example.myshop.Charger;
 import com.example.myshop.GridAdmin;
 import com.example.myshop.GridUser;
 import com.example.myshop.PowerPlant;
+import com.example.myshop.PowerPlantDTO;
 import com.example.myshop.service.GridService;
 
 import jakarta.validation.Valid;
@@ -187,6 +188,13 @@ public class GridController {
         @RequestBody GridAdmin newAdmin
     ){
         return gridService.saveDynamicGridAdmin(newAdmin);
+    }
+
+    @GetMapping("/powerplant/find-with-chargers/{plantId}")
+    public PowerPlantDTO getPlantDetail(
+        @PathVariable Long plantId
+    ){
+        return gridService.getPowerPlantWithChargers(plantId);
     }
 
 

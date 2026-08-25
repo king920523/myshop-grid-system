@@ -1,5 +1,7 @@
 package com.example.myshop;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -30,6 +32,9 @@ public class PowerPlant {
 
     private Boolean isOk;
 
+    @jakarta.persistence.OneToMany(mappedBy = "powerPlant")
+    private List<Charger> chargers;
+
     public Long getId(){return id;}
     public void setId(Long id){this.id = id;}
 
@@ -47,6 +52,9 @@ public class PowerPlant {
 
     public Boolean getIsOk(){return isOk;}
     public void setIsOk(Boolean isOk){this.isOk = isOk;}
+
+    public List<Charger> getChargers(){return chargers;}
+    public void setCharger(List<Charger> chargers){this.chargers = chargers;}
 
     
 }
