@@ -141,28 +141,6 @@ public class GridService {
         return "✅ 已成功新增充電站，並綁定電力來源：" + plant.getPlantName();
     }
 
-    public String loginAndGetToken(String username, String password){
-
-        GridAdmin admin = gridAdminRepository.findByUsername(username);
-
-        if (admin == null || !admin.getPassword().equals(password)) {
-
-            return "❌ 登入失敗：帳號或密碼錯誤！";
-
-        }
-
-        String token = jwtService.generateToken(username);
-        return "✅ 登入成功！請收下您的安全憑證 Token:\nBearer " + token;
-
-    }
-
-    public String saveDynamicGridAdmin(GridAdmin admin){
-
-        gridAdminRepository.save(admin);
-
-        return "管理員帳號註冊成功";
-    }
-
     public PowerPlantDTO getPowerPlantWithChargers(Long plantId){
 
         PowerPlant plant =powerplantRepository.findById(plantId).orElse(null);
@@ -185,6 +163,31 @@ public class GridService {
         return dto;
     }
 
+    private final org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder passwordEncoder = 
+        new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
 
+    public String saveDynamicGridAdmin(GridAdmin admin){
+        GridAdmin existingAdmin = gridAdminRepository.findByUsername(admin.getUsername());
+        if (existingAdmin != null) {
+            return "❌ 註冊失敗：此帳號已存在，請換一個帳號！";
+        }
+
+        String encodedPassword = passwordEncoder.encode(admin.getPassword());
+        admin.setPassword(encodedPassword);
+
+        gridAdminRepository.save(admin);
+        return "🎉 管理員帳號註冊成功！(密碼已啟動 BCrypt 金融級加密防護)";
+    }     
+
+    public String loginAndGetToken(String username, String password){
+        GridAdmin admin = gridAdminRepository.findByUsername(username);
+
+        if (admin == null || !passwordEncoder.matches(password, admin.getPassword())) {
+            return "❌ 登入失敗：帳號或密碼錯誤！";            
+        }
+
+        String token = jwtService.generateToken(username);
+        return "✅ 登入成功！請收下您的安全憑證 Token:\nBearer " + token;
+    }
 
 }
