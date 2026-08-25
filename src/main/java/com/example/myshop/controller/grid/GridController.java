@@ -1,4 +1,4 @@
-package com.example.myshop.controller;
+package com.example.myshop.controller.grid;
 
 import java.util.List;
 
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.myshop.Battery;
-import com.example.myshop.CarbonAcc;
-import com.example.myshop.Charger;
-import com.example.myshop.GridAdmin;
-import com.example.myshop.GridUser;
-import com.example.myshop.PowerPlant;
-import com.example.myshop.PowerPlantDTO;
-import com.example.myshop.service.GridService;
+import com.example.myshop.entity.grid.Battery;
+import com.example.myshop.entity.grid.CarbonAcc;
+import com.example.myshop.entity.grid.Charger;
+import com.example.myshop.entity.grid.GridAdmin;
+import com.example.myshop.entity.grid.GridUser;
+import com.example.myshop.entity.grid.PowerPlant;
+import com.example.myshop.entity.grid.PowerPlantDTO;
+import com.example.myshop.service.grid.GridService;
 
 import jakarta.validation.Valid;
 

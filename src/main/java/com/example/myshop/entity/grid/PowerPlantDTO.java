@@ -1,4 +1,4 @@
-package com.example.myshop;
+package com.example.myshop.entity.grid;
 
 import java.util.List;
 

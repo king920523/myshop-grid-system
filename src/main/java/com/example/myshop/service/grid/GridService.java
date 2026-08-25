@@ -1,4 +1,4 @@
-package com.example.myshop.service;
+package com.example.myshop.service.grid;
 
 import java.util.List;
 
@@ -9,19 +9,20 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.example.myshop.Battery;
-import com.example.myshop.CarbonAcc;
-import com.example.myshop.Charger;
-import com.example.myshop.GridAdmin;
-import com.example.myshop.GridUser;
-import com.example.myshop.PowerPlant;
-import com.example.myshop.PowerPlantDTO;
-import com.example.myshop.repository.BatteryRepository;
-import com.example.myshop.repository.CarbonAccRepository;
-import com.example.myshop.repository.ChargerRepository;
-import com.example.myshop.repository.GridAdminRepository;
-import com.example.myshop.repository.GridUserRepository;
-import com.example.myshop.repository.PowerPlantRepository;
+import com.example.myshop.entity.grid.Battery;
+import com.example.myshop.entity.grid.CarbonAcc;
+import com.example.myshop.entity.grid.Charger;
+import com.example.myshop.entity.grid.GridAdmin;
+import com.example.myshop.entity.grid.GridUser;
+import com.example.myshop.entity.grid.PowerPlant;
+import com.example.myshop.entity.grid.PowerPlantDTO;
+import com.example.myshop.repository.grid.BatteryRepository;
+import com.example.myshop.repository.grid.CarbonAccRepository;
+import com.example.myshop.repository.grid.ChargerRepository;
+import com.example.myshop.repository.grid.GridAdminRepository;
+import com.example.myshop.repository.grid.GridUserRepository;
+import com.example.myshop.repository.grid.PowerPlantRepository;
+import com.example.myshop.service.JwtService;
 
 @Service
 public class GridService {

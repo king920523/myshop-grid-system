@@ -1,4 +1,4 @@
-package com.example.myshop.service;
+package com.example.myshop.service.grid;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.example.myshop.Battery;
-import com.example.myshop.repository.BatteryRepository;
+import com.example.myshop.entity.grid.Battery;
+import com.example.myshop.repository.grid.BatteryRepository;
 
 @Component
 public class GridSimulationScheduler {

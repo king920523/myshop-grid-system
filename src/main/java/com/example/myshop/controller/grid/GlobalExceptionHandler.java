@@ -1,4 +1,4 @@
-package com.example.myshop.controller;
+package com.example.myshop.controller.grid;
 
 import java.util.HashMap;
 import java.util.Map;

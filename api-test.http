@@ -169,5 +169,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc4NzY0M
   "isBusy": false
 }
 ###
-GET http://localhost:8080/charger/page
-Content-Type: application/json
+GET http://localhost:8080/charger/page?page=0&size=3
+
+### 單人單次搶票測試
+POST http://localhost:8080/ticket/rush/1
+

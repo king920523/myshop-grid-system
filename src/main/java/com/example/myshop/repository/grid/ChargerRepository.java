@@ -1,11 +1,11 @@
-package com.example.myshop.repository;
+package com.example.myshop.repository.grid;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.example.myshop.Charger;
+import com.example.myshop.entity.grid.Charger;
 
 public interface ChargerRepository extends JpaRepository<Charger,Long>{
 
